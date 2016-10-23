@@ -1,0 +1,18 @@
+﻿@model List<MovieDictionary.Entities.Movie>
+
+@{
+    ViewBag.Title = "Latest movies";
+}
+
+<h2>Latest movies</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    @Html.Partial("_Movies", Model);
+}
+else
+{
+    <h3>
+        No movies found
+    </h3>
+}

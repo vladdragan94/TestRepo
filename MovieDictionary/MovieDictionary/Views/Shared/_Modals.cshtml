@@ -1,0 +1,77 @@
+﻿<div id="login-register-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="login-register-modal-title modal-title">Log in</h2>
+            </div>
+            <div class="modal-body">
+                <div class="modal-login-register">
+                    <div id="modal-login" class="modal-login">
+                        @Html.Action("Login", "Account")
+                    </div>
+                    <div id="modal-register" style="display:none" class="modal-register">
+                        @Html.Action("Register", "Account")
+                    </div>
+                    <div class="login-register-modal-loading-screen" style="visibility:hidden">
+                        <div class="loading-message">Logging in...</div>
+                        <div class="loading-circle"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="login-register-text">Don't have an account?</span><a class="login-register-switch show-login">Register</a>
+                    <br />
+                    or
+                    <br />
+                    <a class="btn facebook-login-button" onclick="FB.login(function (response) { loginIntoApp(); }, { scope: 'public_profile,email' });"><span class="fa fa-facebook"></span> Connect with Facebook</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="recommend-movie-modal" class="modal fade recommendation-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Recommend "<span class="recomend-movie-name"></span>" to your friends: </h3>
+            </div>
+            <div class="modal-body">
+                <div class="recommend-movie-loading-screen">
+                    <div class="loading-message">Getting friends...</div>
+                    <div class="loading-circle"></div>
+                </div>
+                <div style="display:none" class="friends-list">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input id="recommend-movie-button" type="submit" value="Recommend" class="btn btn-success recommend-movie-button" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="users-recommendation-modal" class="modal fade recommendation-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title">Recommended to you by:</h3>
+            </div>
+            <div class="modal-body">
+                <div class="recommend-movie-loading-screen">
+                    <div class="loading-message">Getting friends...</div>
+                    <div class="loading-circle"></div>
+                </div>
+                <div style="display:none" class="friends-list">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:none" class="alert notification-message">
+    <strong class="message"></strong>
+    <span class="glyphicon glyphicon-remove close-notification" aria-label="close" title="Close"></span>
+</div>

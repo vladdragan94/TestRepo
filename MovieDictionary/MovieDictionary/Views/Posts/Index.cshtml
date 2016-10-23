@@ -1,0 +1,92 @@
+﻿@model MovieDictionary.Models.ForumModel
+
+@{
+    ViewBag.Title = "Forum";
+}
+
+@Styles.Render("~/Content/Forum")
+
+@if (Model != null)
+{
+    <div class="forum-tabs">
+        <h2 id="questions-tab" class="forum-tabs-button active-tab">Questions - <span id="number-of-questions">@Model.ForumStats.NumberOfQuestions</span></h2>
+        <h2 id="posts-tab" class="forum-tabs-button">Posts - <span id="number-of-posts">@Model.ForumStats.NumberOfPosts</span></h2>
+    </div>
+
+    <div class="questions">
+        <a class="create-post-button btn">Ask a question</a>
+        <div id="add-question" style="display:none" class="add-post">
+            <div class="write-post-content">
+                <span title="Close" class="fa fa-close close-post"></span>
+                <div class="form-group">
+                    <input type="text" class="form-control post-title" placeholder="Question title">
+                    <textarea class="form-control post-content" rows="5" placeholder="Question content..."></textarea>
+                </div>
+                <a id="create-question" class="btn create-post"><span>Ask</span></a>
+            </div>
+        </div>
+
+        @if (Model.ForumStats.NumberOfQuestions > 0)
+        {
+
+            <div class="questions-order">
+                <a id="order-Votes" class="posts-order-button active-order">Top rated</a>
+                <a id="order-Released" class="posts-order-button">Latest</a>
+            </div>
+        }
+        else
+        {
+            <div style="display:none" class="questions-order">
+                <a id="order-Votes" class="posts-order-button active-order">Top rated</a>
+                <a id="order-Released" class="posts-order-button">Latest</a>
+            </div>
+        }
+
+        <div class="questions-section">
+        </div>
+
+        <a id="load-more-questions" style="display:none" class="btn load-more-posts"><span>Load more</span></a>
+    </div>
+
+    <div style="display:none" class="posts">
+        <a class="create-post-button btn">Post a message</a>
+        <div id="add-post" style="display:none" class="add-post">
+            <div class="write-post-content">
+                <span title="Close" class="fa fa-close close-post"></span>
+                <div class="form-group">
+                    <input type="text" class="form-control post-title" placeholder="Message title">
+                    <textarea class="form-control post-content" rows="5" placeholder="Message content..."></textarea>
+                </div>
+                <a id="create-post" class="btn btn-info create-post"><span>Post</span></a>
+            </div>
+        </div>
+
+        @if (Model.ForumStats.NumberOfPosts > 0)
+        {
+            <div class="posts-order">
+                <a id="order-Votes" class="posts-order-button active-order">Top rated</a>
+                <a id="order-Released" class="posts-order-button">Latest</a>
+            </div>
+        }
+        else
+        {
+            <div style="display:none" class="posts-order">
+                <a id="order-Votes" class="posts-order-button active-order">Top rated</a>
+                <a id="order-Released" class="posts-order-button">Latest</a>
+            </div>
+        }
+
+        <div class="posts-section">
+        </div>
+
+        <a id="load-more-posts" style="display:none" class="btn load-more-posts"><span>Load more</span></a>
+    </div>
+}
+else
+{
+    <div>No questions or posts yet</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Forum")
+}

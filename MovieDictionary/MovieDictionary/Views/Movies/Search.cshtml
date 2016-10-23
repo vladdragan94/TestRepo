@@ -1,0 +1,122 @@
+﻿@using MovieDictionary.Entities;
+@model MovieDictionary.Models.SearchMoviesModel
+
+@{
+    ViewBag.Title = Request.QueryString.AllKeys.Contains("title") ? "Search movies" : "Top movies";
+}
+
+@Styles.Render("~/Content/MoviesSearch")
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null && Model.CanFilter)
+{
+    <a class="btn btn-primary filter-section-button">Advanced search</a>
+
+    <div style="display:none" class="filter-section">
+        @using (Html.BeginForm("Search", "Movies", null, FormMethod.Get, null))
+        {
+            <span class="fa fa-close close-filter"></span>
+            <div class="form-group">
+                <label for="title-filter">Title</label>
+                <input id="title-filter" name="title" class="form-control" type="text" value="@Model.Title" />
+            </div>
+
+            <div class="form-group">
+                <label for="genre-select">Genre</label>
+                <select id="genre-select" name="genre" class="form-control">
+                    @if (string.IsNullOrEmpty(Model.SelectedGenre))
+                    {
+                        <option selected value="">All</option>
+                    }
+                    else
+                    {
+                        <option value="">All</option>
+                    }
+                    @foreach (var genre in Model.Genres)
+                    {
+                        if (genre == Model.SelectedGenre)
+                        {
+                            <option selected value="@genre">@genre</option>
+                        }
+                        else
+                        {
+                            <option value="@genre">@genre</option>
+                        }
+                    }
+                </select>
+            </div>
+
+                <div class="form-group">
+                    <label for="slider">Years released</label>
+                    <div id="slider" name="slider"></div>
+                    <input name="yearStart" type="text" class="min date" id="min" value="@(Model.YearStart ?? 1900)" readonly>
+                    <input name="yearEnd" type="text" class="max date" id="max" value="@(Model.YearEnd ?? 2020)" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="order-type-filter">Order by</label>
+                    <select id="order-type-filter" name="orderType" class="form-control">
+                        @if (!string.IsNullOrEmpty(Model.OrderType))
+                        {
+                            foreach (var order in new List<string> { "Rating", "Votes", "Released" })
+                            {
+                                if (Model.OrderType == order)
+                                {
+                                    <option selected value="@order">@order</option>
+                                }
+                                else
+                                {
+                                    <option value="@order">@order</option>
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <option selected value="Rating">Rating</option>
+                            <option value="Votes">Votes</option>
+                            <option value="Released">Released</option>
+                        }
+                    </select>
+                </div>
+
+                <input type="hidden" name="showMore" value="false" />
+                <input class="btn btn-primary filter-button" type="submit" value="Find movies" />
+        }
+    </div>
+}
+
+@if (Model != null && Model.NumberOfMovies > 0)
+{
+    <div class="movies-pagination">
+        @if (Model.PageNumber > 0)
+        {
+            @Html.ActionLink("Previous page", "Search", "Movies", new { title = Model.Title, genre = Model.SelectedGenre, awards = Model.Awards, yearStart = Model.YearStart, yearEnd = Model.YearEnd, orderType = Model.OrderType, pageNumber = Model.PageNumber - 1, showMore = false }, new { @class = "page-number-button" })
+        }
+        @if ((Model.PageNumber + 1) * Constants.ApplicationConfigurations.DefaultMoviesPageSize < Model.NumberOfMovies)
+        {
+            @Html.ActionLink("Next page", "Search", "Movies", new { title = Model.Title, genre = Model.SelectedGenre, awards = Model.Awards, yearStart = Model.YearStart, yearEnd = Model.YearEnd, orderType = Model.OrderType, pageNumber = Model.PageNumber + 1, showMore = false }, new { @class = "page-number-button" })
+        }
+    </div>
+    @Html.Partial("_Movies", Model.Movies);
+    <div class="movies-pagination">
+        @if (Model.PageNumber > 0)
+        {
+            @Html.ActionLink("Previous page", "Search", "Movies", new { title = Model.Title, genre = Model.SelectedGenre, awards = Model.Awards, yearStart = Model.YearStart, yearEnd = Model.YearEnd, orderType = Model.OrderType, pageNumber = Model.PageNumber - 1, showMore = false }, new { @class = "page-number-button" })
+        }
+        @if ((Model.PageNumber + 1) * Constants.ApplicationConfigurations.DefaultMoviesPageSize < Model.NumberOfMovies)
+        {
+            @Html.ActionLink("Next page", "Search", "Movies", new { title = Model.Title, genre = Model.SelectedGenre, awards = Model.Awards, yearStart = Model.YearStart, yearEnd = Model.YearEnd, orderType = Model.OrderType, pageNumber = Model.PageNumber + 1, showMore = false }, new { @class = "page-number-button" })
+        }
+    </div>
+}
+else
+{
+    <h3>
+        No movies found
+    </h3>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/MoviesSearch")
+}

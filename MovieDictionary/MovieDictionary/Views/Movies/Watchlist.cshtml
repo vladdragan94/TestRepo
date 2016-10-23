@@ -1,0 +1,32 @@
+﻿@model List<MovieDictionary.Entities.Movie>
+
+@{
+    ViewBag.Title = "Watchlist";
+}
+
+<h2>
+    @ViewBag.Title
+
+    @if (Model != null && Model.Count > 0)
+    {
+        if (Model.Count == 1)
+        {
+            <span>- 1 title</span>
+        }
+        else
+        {
+            <span>- @Model.Count titles</span>
+        }
+    }
+</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    @Html.Partial("_Movies", Model);
+}
+else
+{
+    <p>
+        No movies in watchlist
+    </p>
+}

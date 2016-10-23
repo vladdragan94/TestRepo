@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDictionary", "MovieDictionary\MovieDictionary.csproj", "{45A8B9C0-0301-46E9-B594-6E30FF5024AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDictionary.BL", "MovieDictionary.BL\MovieDictionary.BL.csproj", "{A0E4BC03-DADD-4245-87F0-A922BB53F569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDictionary.DAL", "MovieDictionary.DAL\MovieDictionary.DAL.csproj", "{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDictionary.Entities", "MovieDictionary.Entities\MovieDictionary.Entities.csproj", "{255B79CB-531C-42E0-8D44-A1D387FF893C}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MovieDictionaryDatabase", "MovieDictionaryDatabase\MovieDictionaryDatabase.sqlproj", "{1AAA1D10-839B-42EB-A73C-4E82892E16C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieDictionary.IRepositories", "MovieDictionary.IRepositories\MovieDictionary.IRepositories.csproj", "{CBB7C11C-5B0E-4A05-8DCA-20D00D8E2CA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45A8B9C0-0301-46E9-B594-6E30FF5024AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A8B9C0-0301-46E9-B594-6E30FF5024AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A8B9C0-0301-46E9-B594-6E30FF5024AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A8B9C0-0301-46E9-B594-6E30FF5024AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E4BC03-DADD-4245-87F0-A922BB53F569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E4BC03-DADD-4245-87F0-A922BB53F569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E4BC03-DADD-4245-87F0-A922BB53F569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E4BC03-DADD-4245-87F0-A922BB53F569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255B79CB-531C-42E0-8D44-A1D387FF893C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255B79CB-531C-42E0-8D44-A1D387FF893C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255B79CB-531C-42E0-8D44-A1D387FF893C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255B79CB-531C-42E0-8D44-A1D387FF893C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AAA1D10-839B-42EB-A73C-4E82892E16C0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CBB7C11C-5B0E-4A05-8DCA-20D00D8E2CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB7C11C-5B0E-4A05-8DCA-20D00D8E2CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB7C11C-5B0E-4A05-8DCA-20D00D8E2CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB7C11C-5B0E-4A05-8DCA-20D00D8E2CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://vladdragan.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MovieDictionary.BL\\MovieDictionary.BL.csproj
+		SccProjectName1 = MovieDictionary.BL
+		SccLocalPath1 = MovieDictionary.BL
+		SccProjectUniqueName2 = MovieDictionary.DAL\\MovieDictionary.DAL.csproj
+		SccProjectName2 = MovieDictionary.DAL
+		SccLocalPath2 = MovieDictionary.DAL
+		SccProjectUniqueName3 = MovieDictionary.Entities\\MovieDictionary.Entities.csproj
+		SccProjectName3 = MovieDictionary.Entities
+		SccLocalPath3 = MovieDictionary.Entities
+		SccProjectUniqueName4 = MovieDictionary\\MovieDictionary.csproj
+		SccProjectName4 = MovieDictionary
+		SccLocalPath4 = MovieDictionary
+		SccProjectUniqueName5 = MovieDictionaryDatabase\\MovieDictionaryDatabase.sqlproj
+		SccProjectName5 = MovieDictionaryDatabase
+		SccLocalPath5 = MovieDictionaryDatabase
+		SccProjectUniqueName6 = MovieDictionary.IRepositories\\MovieDictionary.IRepositories.csproj
+		SccProjectName6 = MovieDictionary.IRepositories
+		SccLocalPath6 = MovieDictionary.IRepositories
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,133 @@
+﻿<script id="search-results-template" type="text/x-handlebars-template">
+    <ul id="search-results" class="movies-search-results dropdown-menu">
+        {{#each items}}
+        <li onclick="location.href = '@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Movies/Details?movieId={{Id}}';">
+            <div class="search-results-poster">
+                <img src="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl + MovieDictionary.Entities.Constants.MovieProperties.DefaultPostersDirectory){{Id}}@MovieDictionary.Entities.Constants.MovieProperties.DefaultPosterExtension" onerror="this.onerror = null; this.src = '@MovieDictionary.Entities.Constants.MovieProperties.DefaultPoster';" />
+            </div>
+            <div class="search-results-title">
+                <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Movies/Details?movieId={{Id}}" class="movie-link">{{Title}}</a>
+                <p>{{Year}}</p>
+            </div>
+            <hr class="search-results-separator" />
+        </li>
+        {{/each}}
+        <li class="more-results" onclick="$('#search-movies-form').submit();"><a>More results<span class="fa fa-chevron-right more-results-icon"></span></a></li>
+    </ul>
+</script>
+
+<script id="movie-reviews-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <div style="display:none" class="movie-review new-review-item">
+        <h3 class="review-title">{{Title}}</h3>
+        <div class="movie-review-rating">
+            @for (int i = 1; i <= 10; i++)
+            {
+                <span data-id="review-star-@i" class="fa fa-star-o yellow-star review-rating-star"></span>
+            }
+            <span class="review-rating-value">{{Rating}}</span>
+        </div>
+        <hr />
+        <p class="movie-review-content">{{Content}}</p>
+        <hr />
+        <span class="review-author"><em>Written by <strong><a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{UserName}}</a></strong> on <strong class="movie-date-added">{{DateAdded}}</strong></em></span>
+        <div class="review-likes">
+            <div><span id="like-{{Id}}" title="Like review" class="fa fa-thumbs-up like-button"></span><div class="number-of-likes"> {{NumberOfLikes}}</div></div>
+            <div><span id="dislike-{{Id}}" title="Dislike review" class="fa fa-thumbs-down dislike-button"></span><div class="number-of-dislikes"> {{NumberOfDislikes}}</div></div>
+            <div style="display:none" class="rated-by-current-user">{{RatedByCurrentUser}}</div>
+        </div>
+    </div>
+    {{/each}}
+</script>
+
+<script id="forum-questions-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <div id="question-{{Id}}" style="display:none" class="forum-post-item new-forum-item">
+        <div class="post-content-section">
+            <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Posts/Details?postId={{Id}}"><h3 class="post-title">{{Title}}</h3></a>
+            <p class="post-content">{{Content}}</p>
+        </div>
+        <div class="post-votes">
+            <div id="vote-up-question-{{Id}}" title="Vote up" class="fa fa-plus post-vote-up"></div>
+            <div class="number-of-votes">{{Votes}}</div>
+            <div id="vote-down-question-{{Id}}" title="Vote down" class="fa fa-minus post-vote-down"></div>
+            <div style="display:none" class="rated-by-current-user">{{LikedByCurrentUser}}</div>
+        </div>
+        <hr />
+        <span class="post-author"><em>Asked by <strong><a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{PosterName}}</a></strong> on <strong class="post-date-added">{{DateAdded}}</strong></em></span>
+        <p class="answered-status">
+            {{#if HasAnswer}}
+            <span class="fa fa-check answered-status-icon answered"></span>
+            <span>Answered | {{NumberOfComments}} comments | </span>
+            {{else}}
+            <span class="fa fa-question answered-status-icon"></span>
+            <span>Not answered yet | {{NumberOfComments}} comments | </span>
+            {{/if}}
+            <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Posts/Details?postId={{Id}}">See details</a>
+        </p>
+    </div>
+    {{/each}}
+</script>
+
+<script id="forum-posts-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <div id="post-{{Id}}" style="display:none" class="forum-post-item new-forum-item">
+        <div class="post-content-section">
+            <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Posts/Details?postId={{Id}}"><h3 class="post-title">{{Title}}</h3></a>
+            <p class="post-content">{{Content}}</p>
+        </div>
+        <div class="post-votes">
+            <div id="vote-up-post-{{Id}}" title="Vote up" class="fa fa-plus post-vote-up"></div>
+            <div class="number-of-votes">{{Votes}}</div>
+            <div id="vote-down-post-{{Id}}" title="Vote down" class="fa fa-minus post-vote-down"></div>
+            <div style="display:none" class="rated-by-current-user">{{LikedByCurrentUser}}</div>
+        </div>
+        <hr />
+        <span class="post-author"><em>Posted by <strong><a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{PosterName}}</a></strong> on <strong class="post-date-added">{{DateAdded}}</strong></em></span>
+        <p class="answered-status">
+            <span>{{NumberOfComments}} comments | </span>
+            <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Posts/Details?postId={{Id}}">See details</a>
+        </p>
+    </div>
+    {{/each}}
+</script>
+
+<script id="reply-template" type="text/x-handlebars-template">
+    <div id="reply-{{Id}}-post-current" style="display:none" class="forum-post-item forum-post-reply-item new-forum-item">
+        <div class="post-content-section">
+            <h4 class="post-title">
+                {{Title}}
+            </h4>
+            <p class="post-content">{{Content}}</p>
+        </div>
+        <div class="post-votes">
+            <div id="vote-up-post-{{Id}}" title="Vote up" class="fa fa-plus post-vote-up"></div>
+            <div class="number-of-votes">0</div>
+            <div id="vote-down-post-{{Id}}" title="Vote down" class="fa fa-minus post-vote-down"></div>
+        </div>
+        <hr />
+        <span class="post-author"><em>Posted by <strong><a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{PosterName}}</a></strong> on <strong class="post-date-added">{{DateAdded}}</strong></em></span>
+    </div>
+</script>
+
+<script id="find-users-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{UserName}}</a>
+    {{/each}}
+</script>
+
+<script id="friends-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <div class="checkbox">
+        <label><input id="friend_{{UserId}}" class="friend-checkbox" type="checkbox">{{UserName}}</label>
+    </div>
+    {{/each}}
+</script>
+
+<script id="recommendation-friends-template" type="text/x-handlebars-template">
+    {{#each items}}
+    <div>
+        <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Users/UserProfile?userId={{UserId}}">{{UserName}}</a>
+    </div>
+    {{/each}}
+</script>

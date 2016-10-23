@@ -1,0 +1,124 @@
+﻿.top-users {
+    display: inline-block;
+    width: 55%;
+    vertical-align: top;
+    margin-right: 50px;
+}
+
+.search-for-users {
+    display: inline-block;
+    width: 40%;
+    vertical-align: top;
+}
+
+.top-users-table {
+    margin-top: 25px;
+    width: 100%;
+}
+
+    .top-users-table td {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 300px;
+    }
+
+.search-for-users .form-group {
+    margin-top: 50px;
+    display: inline-block;
+}
+
+#find-users-input {
+    display: inline-block;
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.find-users-button {
+    display: inline-block;
+    margin-top: -4px;
+    height: 34px;
+    border-radius: 3px;
+}
+
+.users-search-results a {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.friend-status {
+    margin-top: 30px;
+}
+
+.reputation {
+    margin-top: 30px;
+}
+
+.badges {
+    margin-top: 30px;
+}
+
+.friend-button-icon {
+    margin-right: 10px;
+    color: green;
+}
+
+.expand-content {
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.item-content {
+    padding-top: 10px;
+}
+
+.notification-status {
+    float: right;
+    margin-left: 10px;
+}
+
+.notifications .alert {
+    position: relative;
+    max-width: 800px;
+    min-height: 65px;
+    background-color: #c1e3b5;
+    color: #2b552b;
+}
+
+.notifications .item-content .notification-text {
+    display: inline-block;
+    width: 65%;
+    word-wrap: break-word;
+}
+
+.movie-recommendations .alert {
+    max-width: 800px;
+}
+
+.alert:hover .mark-as-seen-button {
+    display: initial;
+}
+
+.mark-as-seen-button {
+    color: grey;
+    margin-right: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+.seen-notification {
+    color: #448844 !important;
+    background-color: #e0f1da !important;
+}
+
+.recommendation-users {
+    cursor: pointer;
+}
+
+.badge-image {
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+}

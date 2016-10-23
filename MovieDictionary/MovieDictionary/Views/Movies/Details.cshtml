@@ -1,0 +1,204 @@
+﻿@model MovieDictionary.Entities.Movie
+
+@Styles.Render("~/Content/MovieDetails")
+
+@{
+    var postersDirectory = MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl + MovieDictionary.Entities.Constants.MovieProperties.DefaultPostersDirectory;
+
+    var rating = Convert.ToDouble(Model.Rating.HasValue ? Model.Rating.Value : 0);
+    var fractionCount = (int)(rating * 10) % 10;
+    int i;
+    float[] parts = { 3.50F, 8.00F, 9.25F, 10.50F, 11.75F, 13.00F, 14.25F, 15.50F, 16.75F, 18.00F, 22.50F };
+}
+
+@if (Model != null)
+{
+    <div class="movie-poster">
+        <img class="movie-poster" src="@(postersDirectory + Model.Id + MovieDictionary.Entities.Constants.MovieProperties.DefaultPosterExtension)" alt="@Model.Title" onerror="this.onerror = null; this.src = '@MovieDictionary.Entities.Constants.MovieProperties.DefaultPoster';" />
+    </div>
+    <div class="movie-details">
+        <h1 id="movie-title">@Model.Title</h1>
+        <div class="genres-year-runtime">
+            <p class="genres">
+                @Model.Genre
+            </p>
+            <p>
+                <span class="glyphicon glyphicon-calendar" title="Release date: @(Model.Released.HasValue ? Model.Released.Value.ToString("dd MMMM, yyyy") : "N/A")"></span>
+                @Model.Year
+            </p>
+            <p>
+                <span class="glyphicon glyphicon-time" title="Runtime"></span>
+                @Model.Runtime
+            </p>
+        </div>
+        <div class="rating">
+            <span class="rating-bar">
+                @for (i = 1; i <= (int)rating; i++)
+                {
+                    <span id="rating-@i" class="fa fa-star rating-star"></span>
+                }
+
+                @if (i <= 10)
+                {
+                    <span id="rating-@i" class="fa fa-star-o rating-star fractional-star-outline"><span id="rating-@(i).0" style="clip:rect(0px @(parts[fractionCount])px 28px 0px);" class="fa fa-star rating-star fractional-star"></span></span>
+                }
+
+                @for (i = (int)rating + 2; i <= 10; i++)
+                {
+                    <span id="rating-@i" class="fa fa-star-o rating-star"></span>
+                }
+            </span>
+            <span title="Unrate movie" style="visibility:hidden" class="glyphicon glyphicon-remove unrate-movie-button"></span>
+            <div class="rating-score">
+                <span style="display:none" class="user-rating">
+                    <span>@Model.CurrentUserRating</span>
+                    <span>(you)</span>
+                    <span> | </span>
+                </span>
+                <span class="site-rating">@string.Format("{0:0.0}", rating)</span>
+                <span>from <span class="number-of-votes">@Model.Votes</span> votes</span>
+            </div>
+        </div>
+        <div class="plot">
+            <p>
+                @Model.Plot
+            </p>
+        </div>
+        <div class="director-writers-actors">
+            <p>
+                <strong>Director: </strong>@Model.Director
+            </p>
+            <p>
+                <strong>Writer: </strong>@Model.Writer
+            </p>
+            <p>
+                <strong>Stars: </strong>@Model.Actors
+            </p>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Awards) && Model.Awards != MovieDictionary.Entities.Constants.MoviesApi.InfoNotAvailable)
+        {
+            <div class="awards">
+                <p>
+                    @if (Model.Awards.Contains("Oscar"))
+                    {
+                        <img src="~/Content/Images/oscar.png" alt="oscar-award" />
+                        @Model.Awards
+                    }
+                    else if (Model.Awards.Contains("Globe"))
+                    {
+                        <img src="~/Content/Images/golden-globe.png" alt="golden-globe-award" />
+                        @Model.Awards
+                    }
+                    else if (Model.Awards.Contains("BAFTA"))
+                    {
+                        <img src="~/Content/Images/bafta.jpg" alt="bafta-award" />
+                        @Model.Awards
+                    }
+                </p>
+            </div>
+        }
+        @if (Model.InCinema || Model.ComingSoon)
+        {
+            <div class="in-cinema">
+                <img src="~/Content/Images/cinema.jpg" />
+                @if (Model.InCinema)
+                {
+                    <span>Now in cinemas</span>
+                }
+                else
+                {
+                    <span>Soon in cinemas</span>
+                }
+            </div>
+        }
+        <div class="actions">
+            @if (!Model.IsInWatchlist)
+            {
+                <a id="movie-@Model.Id" class="btn btn-info add-to-watchlist"><span class="watchlist-button-text">Add to watchlist</span><span style="display:none" class="fa fa-check movie-details-icon"></span></a>
+            }
+            else
+            {
+                <a id="movie-@Model.Id" class="btn btn-success in-watchlist"><span class="watchlist-button-text">In watchlist</span><span class="fa fa-check movie-details-icon"></span></a>
+            }
+            <a class="btn btn-info" data-toggle="modal" data-target="#recommend-movie-modal">Recommend</a>
+            <a href="http://imdb.com/title/@Model.Id" target="_blank" class="btn btn-info">Go to IMDB</a>
+        </div>
+    </div>
+
+    if (!string.IsNullOrEmpty(Model.Trailer))
+    {
+        <div class="trailer">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@(Model.Trailer)"></iframe>
+            </div>
+        </div>
+    }
+
+    <div class="reviews">
+        <h2 id="reviews-section">
+            Reviews
+            <span>
+                @if (Model.NumberOfReviews > 0)
+                {
+                    <span> - </span>
+                    <span id="number-of-reviews">@Model.NumberOfReviews</span>
+                }
+                else
+                {
+                    <span style="display:none"> - </span>
+                    <span style="display:none" id="number-of-reviews">@Model.NumberOfReviews</span>
+                }
+            </span>
+        </h2>
+        @if (!Model.ReviewedByCurrentUser)
+        {
+            <a class="write-review-button btn btn-info">Write a review</a>
+            <div id="add-review" style="display:none" class="add-review">
+                <div class="write-review-content">
+                    <span title="Close" class="fa fa-close close-review"></span>
+                    <div class="form-group">
+                        <input type="text" class="form-control review-title" placeholder="Review title">
+                        <textarea class="form-control review-content" rows="5" placeholder="Write the review..."></textarea>
+                    </div>
+                    <a id="review-@Model.Id" class="btn btn-info post-review"><span>Post review</span><span class="fa fa-pencil-square-o movie-details-icon"></span></a>
+                </div>
+            </div>
+        }
+        @if (Model.NumberOfReviews > 0)
+        {
+            <div id="order-@Model.Id" class="reviews-order">
+                <a id="order-Votes" class="reviews-order-button active-order">Top rated</a>
+                <a id="order-Released" class="reviews-order-button">Latest</a>
+            </div>
+        }
+        else
+        {
+            <div style="display:none" id="order-@Model.Id" class="reviews-order">
+                <a id="order-Votes" class="reviews-order-button active-order">Top rated</a>
+                <a id="order-Released" class="reviews-order-button">Latest</a>
+            </div>
+        }
+        <div class="reviews-section">
+        </div>
+        @if (Model.NumberOfReviews > MovieDictionary.Entities.Constants.ApplicationConfigurations.DefaultReviewsPageSize)
+        {
+            <a class="btn btn-info load-more-reviews">Load more</a>
+        }
+    </div>
+
+    if (Model.CurrentUserRating.HasValue)
+    {
+        <input id="current-user-rating" type="hidden" value="@Model.CurrentUserRating" />
+    }
+
+    <input id="movie-id" type="hidden" value="@Model.Id" />
+}
+else
+{
+    <p>Movie not found</p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/MovieDetails")
+}

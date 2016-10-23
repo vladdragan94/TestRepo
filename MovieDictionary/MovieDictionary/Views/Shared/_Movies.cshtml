@@ -1,0 +1,53 @@
+﻿@model List<MovieDictionary.Entities.Movie>
+
+@{
+    var postersDirectory = MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl + MovieDictionary.Entities.Constants.MovieProperties.DefaultPostersDirectory;
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var movie in Model)
+    {
+        var rating = Convert.ToDouble(movie.Rating.HasValue ? movie.Rating.Value : 0);
+
+        <div id="movie-@movie.Id" class="movie-item">
+            <a href="@(MovieDictionary.Entities.Constants.ApplicationConfigurations.ApplicationBaseUrl)Movies/Details?movieId=@movie.Id">
+                <img class="movie-item-poster" src="@(postersDirectory + movie.Id + MovieDictionary.Entities.Constants.MovieProperties.DefaultPosterExtension)" alt="@movie.Title" onerror="this.onerror = null; this.src = '@MovieDictionary.Entities.Constants.MovieProperties.DefaultPoster';" />
+                <div class="movie-item-info">
+                    <h4>@movie.Title</h4>
+                    <span>@movie.Year</span>
+                    <p class="extra-info">
+                        <span class="genres">@movie.Genre</span>
+                        <br />
+                        <strong>Runtime: </strong><span class="runtime">@(movie.Runtime ?? "...")</span>
+                        <br />
+                        <strong>Director: </strong><span class="director">@(movie.Director ?? "...")</span>
+                        <br />
+                        <strong>Starring: </strong><span class="actors">@(movie.Actors ?? "...")</span>
+                        <br />
+                    </p>
+                </div>
+                <div class="movie-item-rating">
+                    <i class="fa fa-star"></i>
+                    @if (rating < 10)
+                    {
+                        <span>@string.Format("{0:0.0}", rating)</span>
+                    }
+                    else
+                    {
+                        <span class="rating-10">10</span>
+                    }
+                </div>
+                <div class="movie-item-overlay"></div>
+            </a>
+            @if (movie.IsInWatchlist)
+            {
+                <span title="In watchlist" class="fa fa-calendar-check-o add-to-watchlist-icon"></span>
+            }
+            else
+            {
+                <span title="Add to watchlist" class="fa fa-calendar-o add-to-watchlist-icon"></span>
+            }
+        </div>
+    }
+}

@@ -1,0 +1,1564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MoviesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationConfigurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Reputation" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Badges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ForumPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PostId" Type="int" />
+          <Property Name="IsQuestion" Type="bit" Nullable="false" />
+          <Property Name="IsAnswer" Type="bit" Nullable="false" />
+          <Property Name="Votes" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LatestMovies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Runtime" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Released" Type="date" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Rating" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Poster" Type="nvarchar" MaxLength="500" />
+          <Property Name="Plot" Type="nvarchar(max)" />
+          <Property Name="Director" Type="nvarchar" MaxLength="500" />
+          <Property Name="Writer" Type="nvarchar" MaxLength="500" />
+          <Property Name="Actors" Type="nvarchar" MaxLength="500" />
+          <Property Name="Awards" Type="nvarchar" MaxLength="500" />
+          <Property Name="Trailer" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="NotificationTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="PostsLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Liked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReviewsLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReviewId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Liked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersBadges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="BadgeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersFriendships">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SecondUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersNotifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Seen" Type="bit" Nullable="false" />
+          <Property Name="NotificationTypeId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" />
+          <Property Name="BadgeId" Type="int" />
+          <Property Name="PostId" Type="int" />
+        </EntityType>
+        <EntityType Name="UsersRatings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersRecommendations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SenderId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ReceiverId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Liked" Type="bit" />
+        </EntityType>
+        <EntityType Name="UsersWatchlists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="MovieId" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ForumPosts_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ForumPosts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ForumPosts_ForumPosts">
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="0..1" />
+          <End Role="ForumPosts1" Type="Self.ForumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ForumPosts1">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LatestMovies_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="LatestMovies" Type="Self.LatestMovies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LatestMovies">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostsLikes_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="PostsLikes" Type="Self.PostsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostsLikes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostsLikes_ForumPosts">
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="1" />
+          <End Role="PostsLikes" Type="Self.PostsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostsLikes">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewsLikes_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReviewsLikes" Type="Self.ReviewsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewsLikes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewsLikes_Reviews">
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="1" />
+          <End Role="ReviewsLikes" Type="Self.ReviewsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reviews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewsLikes">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersBadges_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersBadges" Type="Self.UsersBadges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersBadges">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersBadges_Badges">
+          <End Role="Badges" Type="Self.Badges" Multiplicity="1" />
+          <End Role="UsersBadges" Type="Self.UsersBadges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Badges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersBadges">
+              <PropertyRef Name="BadgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersFriendships_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersFriendships" Type="Self.UsersFriendships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFriendships">
+              <PropertyRef Name="FirstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersFriendships_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersFriendships" Type="Self.UsersFriendships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFriendships">
+              <PropertyRef Name="SecondUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersNotifications" Type="Self.UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_Badges">
+          <End Role="Badges" Type="Self.Badges" Multiplicity="0..1" />
+          <End Role="UsersNotifications" Type="Self.UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Badges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="BadgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_ForumPosts">
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="0..1" />
+          <End Role="UsersNotifications" Type="Self.UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+          <End Role="UsersNotifications" Type="Self.UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_NotificationTypes">
+          <End Role="NotificationTypes" Type="Self.NotificationTypes" Multiplicity="1" />
+          <End Role="UsersNotifications" Type="Self.UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="NotificationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRatings_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersRatings" Type="Self.UsersRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRatings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRatings_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="UsersRatings" Type="Self.UsersRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRatings">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersRecommendations" Type="Self.UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersRecommendations" Type="Self.UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="ReceiverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="UsersRecommendations" Type="Self.UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersWatchlists_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersWatchlists" Type="Self.UsersWatchlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersWatchlists">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersWatchlists_Movies">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="UsersWatchlists" Type="Self.UsersWatchlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersWatchlists">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MoviesModelStoreContainer">
+          <EntitySet Name="ApplicationConfigurations" EntityType="Self.ApplicationConfigurations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Badges" EntityType="Self.Badges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ForumPosts" EntityType="Self.ForumPosts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LatestMovies" EntityType="Self.LatestMovies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationTypes" EntityType="Self.NotificationTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostsLikes" EntityType="Self.PostsLikes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReviewsLikes" EntityType="Self.ReviewsLikes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersBadges" EntityType="Self.UsersBadges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersFriendships" EntityType="Self.UsersFriendships" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersNotifications" EntityType="Self.UsersNotifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRatings" EntityType="Self.UsersRatings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRecommendations" EntityType="Self.UsersRecommendations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersWatchlists" EntityType="Self.UsersWatchlists" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForumPosts_AspNetUsers" Association="Self.FK_ForumPosts_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForumPosts_ForumPosts" Association="Self.FK_ForumPosts_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="ForumPosts1" EntitySet="ForumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LatestMovies_Movies" Association="Self.FK_LatestMovies_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="LatestMovies" EntitySet="LatestMovies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostsLikes_AspNetUsers" Association="Self.FK_PostsLikes_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PostsLikes" EntitySet="PostsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostsLikes_ForumPosts" Association="Self.FK_PostsLikes_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="PostsLikes" EntitySet="PostsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_AspNetUsers" Association="Self.FK_Reviews_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Movies" Association="Self.FK_Reviews_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewsLikes_AspNetUsers" Association="Self.FK_ReviewsLikes_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReviewsLikes" EntitySet="ReviewsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewsLikes_Reviews" Association="Self.FK_ReviewsLikes_Reviews">
+            <End Role="Reviews" EntitySet="Reviews" />
+            <End Role="ReviewsLikes" EntitySet="ReviewsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersBadges_AspNetUsers" Association="Self.FK_UsersBadges_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersBadges" EntitySet="UsersBadges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersBadges_Badges" Association="Self.FK_UsersBadges_Badges">
+            <End Role="Badges" EntitySet="Badges" />
+            <End Role="UsersBadges" EntitySet="UsersBadges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersFriendships_AspNetUsers" Association="Self.FK_UsersFriendships_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersFriendships" EntitySet="UsersFriendships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersFriendships_AspNetUsers1" Association="Self.FK_UsersFriendships_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersFriendships" EntitySet="UsersFriendships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_AspNetUsers" Association="Self.FK_UsersNotifications_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_Badges" Association="Self.FK_UsersNotifications_Badges">
+            <End Role="Badges" EntitySet="Badges" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_ForumPosts" Association="Self.FK_UsersNotifications_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_Movies" Association="Self.FK_UsersNotifications_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_NotificationTypes" Association="Self.FK_UsersNotifications_NotificationTypes">
+            <End Role="NotificationTypes" EntitySet="NotificationTypes" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRatings_AspNetUsers" Association="Self.FK_UsersRatings_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRatings" EntitySet="UsersRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRatings_Movies" Association="Self.FK_UsersRatings_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersRatings" EntitySet="UsersRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_AspNetUsers" Association="Self.FK_UsersRecommendations_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_AspNetUsers1" Association="Self.FK_UsersRecommendations_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_Movies" Association="Self.FK_UsersRecommendations_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersWatchlists_AspNetUsers" Association="Self.FK_UsersWatchlists_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersWatchlists" EntitySet="UsersWatchlists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersWatchlists_Movies" Association="Self.FK_UsersWatchlists_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersWatchlists" EntitySet="UsersWatchlists" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MoviesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ForumPosts" Relationship="Self.FK_ForumPosts_AspNetUsers" FromRole="AspNetUsers" ToRole="ForumPosts" />
+          <NavigationProperty Name="ReviewsLikes" Relationship="Self.FK_ReviewsLikes_AspNetUsers" FromRole="AspNetUsers" ToRole="ReviewsLikes" />
+          <NavigationProperty Name="UsersBadges" Relationship="Self.FK_UsersBadges_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersBadges" />
+          <NavigationProperty Name="UsersFriendships" Relationship="Self.FK_UsersFriendships_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersFriendships" />
+          <NavigationProperty Name="UsersFriendships1" Relationship="Self.FK_UsersFriendships_AspNetUsers1" FromRole="AspNetUsers" ToRole="UsersFriendships" />
+          <NavigationProperty Name="UsersRecommendations" Relationship="Self.FK_UsersRecommendations_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersRecommendations" />
+          <NavigationProperty Name="UsersRecommendations1" Relationship="Self.FK_UsersRecommendations_AspNetUsers1" FromRole="AspNetUsers" ToRole="UsersRecommendations" />
+          <NavigationProperty Name="UsersWatchlists" Relationship="Self.FK_UsersWatchlists_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersWatchlists" />
+          <NavigationProperty Name="UsersRatings" Relationship="MoviesModel.FK_UsersRatings_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersRatings" />
+          <NavigationProperty Name="Reviews" Relationship="MoviesModel.FK_Reviews_AspNetUsers" FromRole="AspNetUsers" ToRole="Reviews" />
+          <NavigationProperty Name="AspNetRoles" Relationship="MoviesModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="PostsLikes" Relationship="MoviesModel.FK_PostsLikes_AspNetUsers" FromRole="AspNetUsers" ToRole="PostsLikes" />
+          <Property Name="Reputation" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsersNotifications" Relationship="MoviesModel.FK_UsersNotifications_AspNetUsers" FromRole="AspNetUsers" ToRole="UsersNotifications" />
+        </EntityType>
+        <EntityType Name="Badges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UsersBadges" Relationship="Self.FK_UsersBadges_Badges" FromRole="Badges" ToRole="UsersBadges" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersNotifications" Relationship="MoviesModel.FK_UsersNotifications_Badges" FromRole="Badges" ToRole="UsersNotifications" />
+        </EntityType>
+        <EntityType Name="ForumPosts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostId" Type="Int32" />
+          <Property Name="IsAnswer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_ForumPosts_AspNetUsers" FromRole="ForumPosts" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ForumPosts1" Relationship="Self.FK_ForumPosts_ForumPosts" FromRole="ForumPosts" ToRole="ForumPosts1" />
+          <NavigationProperty Name="ForumPosts2" Relationship="Self.FK_ForumPosts_ForumPosts" FromRole="ForumPosts1" ToRole="ForumPosts" />
+          <Property Name="IsQuestion" Type="Boolean" Nullable="false" />
+          <Property Name="Votes" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PostsLikes" Relationship="MoviesModel.FK_PostsLikes_ForumPosts" FromRole="ForumPosts" ToRole="PostsLikes" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersNotifications" Relationship="MoviesModel.FK_UsersNotifications_ForumPosts" FromRole="ForumPosts" ToRole="UsersNotifications" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ReviewsLikes" Relationship="Self.FK_ReviewsLikes_Reviews" FromRole="Reviews" ToRole="ReviewsLikes" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MoviesModel.FK_Reviews_AspNetUsers" FromRole="Reviews" ToRole="AspNetUsers" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_Reviews_Movies" FromRole="Reviews" ToRole="Movies" />
+        </EntityType>
+        <EntityType Name="ReviewsLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReviewId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Liked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_ReviewsLikes_AspNetUsers" FromRole="ReviewsLikes" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_ReviewsLikes_Reviews" FromRole="ReviewsLikes" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="UsersBadges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BadgeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UsersBadges_AspNetUsers" FromRole="UsersBadges" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Badges" Relationship="Self.FK_UsersBadges_Badges" FromRole="UsersBadges" ToRole="Badges" />
+        </EntityType>
+        <EntityType Name="UsersFriendships">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UsersFriendships_AspNetUsers" FromRole="UsersFriendships" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK_UsersFriendships_AspNetUsers1" FromRole="UsersFriendships" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="UsersRecommendations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReceiverId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MovieId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Liked" Type="Boolean" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UsersRecommendations_AspNetUsers" FromRole="UsersRecommendations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="Self.FK_UsersRecommendations_AspNetUsers1" FromRole="UsersRecommendations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_UsersRecommendations_Movies" FromRole="UsersRecommendations" ToRole="Movies" />
+        </EntityType>
+        <EntityType Name="UsersWatchlists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MovieId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_UsersWatchlists_AspNetUsers" FromRole="UsersWatchlists" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_UsersWatchlists_Movies" FromRole="UsersWatchlists" ToRole="Movies" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_ForumPosts_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ForumPosts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewsLikes_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReviewsLikes" Type="Self.ReviewsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewsLikes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersBadges_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersBadges" Type="Self.UsersBadges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersBadges">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersFriendships_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersFriendships" Type="Self.UsersFriendships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFriendships">
+              <PropertyRef Name="FirstUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersFriendships_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersFriendships" Type="Self.UsersFriendships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersFriendships">
+              <PropertyRef Name="SecondUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersRecommendations" Type="Self.UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersRecommendations" Type="Self.UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="ReceiverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersWatchlists_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UsersWatchlists" Type="Self.UsersWatchlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersWatchlists">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersBadges_Badges">
+          <End Role="Badges" Type="Self.Badges" Multiplicity="1" />
+          <End Role="UsersBadges" Type="Self.UsersBadges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Badges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersBadges">
+              <PropertyRef Name="BadgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ForumPosts_ForumPosts">
+          <End Role="ForumPosts" Type="Self.ForumPosts" Multiplicity="0..1" />
+          <End Role="ForumPosts1" Type="Self.ForumPosts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ForumPosts1">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReviewsLikes_Reviews">
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="1" />
+          <End Role="ReviewsLikes" Type="Self.ReviewsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reviews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReviewsLikes">
+              <PropertyRef Name="ReviewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MoviesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="Badges" EntityType="Self.Badges" />
+          <EntitySet Name="ForumPosts" EntityType="Self.ForumPosts" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" />
+          <EntitySet Name="ReviewsLikes" EntityType="Self.ReviewsLikes" />
+          <EntitySet Name="UsersBadges" EntityType="Self.UsersBadges" />
+          <EntitySet Name="UsersFriendships" EntityType="Self.UsersFriendships" />
+          <EntitySet Name="UsersRecommendations" EntityType="Self.UsersRecommendations" />
+          <EntitySet Name="UsersWatchlists" EntityType="Self.UsersWatchlists" />
+          <AssociationSet Name="FK_ForumPosts_AspNetUsers" Association="Self.FK_ForumPosts_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewsLikes_AspNetUsers" Association="Self.FK_ReviewsLikes_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReviewsLikes" EntitySet="ReviewsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersBadges_AspNetUsers" Association="Self.FK_UsersBadges_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersBadges" EntitySet="UsersBadges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersFriendships_AspNetUsers" Association="Self.FK_UsersFriendships_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersFriendships" EntitySet="UsersFriendships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersFriendships_AspNetUsers1" Association="Self.FK_UsersFriendships_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersFriendships" EntitySet="UsersFriendships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_AspNetUsers" Association="Self.FK_UsersRecommendations_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_AspNetUsers1" Association="Self.FK_UsersRecommendations_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersWatchlists_AspNetUsers" Association="Self.FK_UsersWatchlists_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersWatchlists" EntitySet="UsersWatchlists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersBadges_Badges" Association="Self.FK_UsersBadges_Badges">
+            <End Role="Badges" EntitySet="Badges" />
+            <End Role="UsersBadges" EntitySet="UsersBadges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ForumPosts_ForumPosts" Association="Self.FK_ForumPosts_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="ForumPosts1" EntitySet="ForumPosts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReviewsLikes_Reviews" Association="Self.FK_ReviewsLikes_Reviews">
+            <End Role="Reviews" EntitySet="Reviews" />
+            <End Role="ReviewsLikes" EntitySet="ReviewsLikes" />
+          </AssociationSet>
+          <EntitySet Name="UsersRatings" EntityType="MoviesModel.UsersRatings" />
+          <AssociationSet Name="FK_UsersRatings_AspNetUsers" Association="MoviesModel.FK_UsersRatings_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersRatings" EntitySet="UsersRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_AspNetUsers" Association="MoviesModel.FK_Reviews_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <EntitySet Name="Genres" EntityType="MoviesModel.Genres" />
+          <EntitySet Name="AspNetRoles" EntityType="MoviesModel.AspNetRoles" />
+          <AssociationSet Name="AspNetUserRoles" Association="MoviesModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="PostsLikes" EntityType="MoviesModel.PostsLikes" />
+          <AssociationSet Name="FK_PostsLikes_AspNetUsers" Association="MoviesModel.FK_PostsLikes_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PostsLikes" EntitySet="PostsLikes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostsLikes_ForumPosts" Association="MoviesModel.FK_PostsLikes_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="PostsLikes" EntitySet="PostsLikes" />
+          </AssociationSet>
+          <EntitySet Name="LatestMovies" EntityType="MoviesModel.LatestMovies" />
+          <EntitySet Name="ApplicationConfigurations" EntityType="MoviesModel.ApplicationConfigurations" />
+          <EntitySet Name="Movies" EntityType="MoviesModel.Movies" />
+          <AssociationSet Name="FK_LatestMovies_Movies" Association="MoviesModel.FK_LatestMovies_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="LatestMovies" EntitySet="LatestMovies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Movies" Association="MoviesModel.FK_Reviews_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRatings_Movies" Association="MoviesModel.FK_UsersRatings_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersRatings" EntitySet="UsersRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRecommendations_Movies" Association="MoviesModel.FK_UsersRecommendations_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersRecommendations" EntitySet="UsersRecommendations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersWatchlists_Movies" Association="MoviesModel.FK_UsersWatchlists_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersWatchlists" EntitySet="UsersWatchlists" />
+          </AssociationSet>
+          <EntitySet Name="NotificationTypes" EntityType="MoviesModel.NotificationTypes" />
+          <EntitySet Name="UsersNotifications" EntityType="MoviesModel.UsersNotifications" />
+          <AssociationSet Name="FK_UsersNotifications_AspNetUsers" Association="MoviesModel.FK_UsersNotifications_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_Badges" Association="MoviesModel.FK_UsersNotifications_Badges">
+            <End Role="Badges" EntitySet="Badges" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_ForumPosts" Association="MoviesModel.FK_UsersNotifications_ForumPosts">
+            <End Role="ForumPosts" EntitySet="ForumPosts" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_Movies" Association="MoviesModel.FK_UsersNotifications_Movies">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersNotifications_NotificationTypes" Association="MoviesModel.FK_UsersNotifications_NotificationTypes">
+            <End Role="NotificationTypes" EntitySet="NotificationTypes" />
+            <End Role="UsersNotifications" EntitySet="UsersNotifications" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="UsersRatings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MovieId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MoviesModel.FK_UsersRatings_AspNetUsers" FromRole="UsersRatings" ToRole="AspNetUsers" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_UsersRatings_Movies" FromRole="UsersRatings" ToRole="Movies" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_UsersRatings_AspNetUsers">
+          <End Type="MoviesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="MoviesModel.UsersRatings" Role="UsersRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRatings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_AspNetUsers">
+          <End Type="MoviesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="MoviesModel.Reviews" Role="Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Genres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MoviesModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="MoviesModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="MoviesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PostsLikes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Liked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MoviesModel.FK_PostsLikes_AspNetUsers" FromRole="PostsLikes" ToRole="AspNetUsers" />
+          <NavigationProperty Name="ForumPosts" Relationship="MoviesModel.FK_PostsLikes_ForumPosts" FromRole="PostsLikes" ToRole="ForumPosts" />
+        </EntityType>
+        <Association Name="FK_PostsLikes_AspNetUsers">
+          <End Type="MoviesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="MoviesModel.PostsLikes" Role="PostsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostsLikes">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostsLikes_ForumPosts">
+          <End Type="MoviesModel.ForumPosts" Role="ForumPosts" Multiplicity="1" />
+          <End Type="MoviesModel.PostsLikes" Role="PostsLikes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostsLikes">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LatestMovies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_LatestMovies_Movies" FromRole="LatestMovies" ToRole="Movies" />
+        </EntityType>
+        <EntityType Name="ApplicationConfigurations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Runtime" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Released" Type="DateTime" Precision="0" />
+          <Property Name="Genre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Poster" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Plot" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Director" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Writer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Actors" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Awards" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LatestMovies" Relationship="MoviesModel.FK_LatestMovies_Movies" FromRole="Movies" ToRole="LatestMovies" />
+          <NavigationProperty Name="Reviews" Relationship="MoviesModel.FK_Reviews_Movies" FromRole="Movies" ToRole="Reviews" />
+          <NavigationProperty Name="UsersRatings" Relationship="MoviesModel.FK_UsersRatings_Movies" FromRole="Movies" ToRole="UsersRatings" />
+          <NavigationProperty Name="UsersRecommendations" Relationship="MoviesModel.FK_UsersRecommendations_Movies" FromRole="Movies" ToRole="UsersRecommendations" />
+          <NavigationProperty Name="UsersWatchlists" Relationship="MoviesModel.FK_UsersWatchlists_Movies" FromRole="Movies" ToRole="UsersWatchlists" />
+          <NavigationProperty Name="UsersNotifications" Relationship="MoviesModel.FK_UsersNotifications_Movies" FromRole="Movies" ToRole="UsersNotifications" />
+          <Property Name="Trailer" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_LatestMovies_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="1" />
+          <End Type="MoviesModel.LatestMovies" Role="LatestMovies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LatestMovies">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="1" />
+          <End Type="MoviesModel.Reviews" Role="Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRatings_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="1" />
+          <End Type="MoviesModel.UsersRatings" Role="UsersRatings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRatings">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRecommendations_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="1" />
+          <End Type="MoviesModel.UsersRecommendations" Role="UsersRecommendations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersRecommendations">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersWatchlists_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="1" />
+          <End Type="MoviesModel.UsersWatchlists" Role="UsersWatchlists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersWatchlists">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NotificationTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsersNotifications" Relationship="MoviesModel.FK_UsersNotifications_NotificationTypes" FromRole="NotificationTypes" ToRole="UsersNotifications" />
+        </EntityType>
+        <EntityType Name="UsersNotifications">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Seen" Type="Boolean" Nullable="false" />
+          <Property Name="NotificationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MovieId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BadgeId" Type="Int32" />
+          <Property Name="PostId" Type="Int32" />
+          <NavigationProperty Name="AspNetUsers" Relationship="MoviesModel.FK_UsersNotifications_AspNetUsers" FromRole="UsersNotifications" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Badges" Relationship="MoviesModel.FK_UsersNotifications_Badges" FromRole="UsersNotifications" ToRole="Badges" />
+          <NavigationProperty Name="ForumPosts" Relationship="MoviesModel.FK_UsersNotifications_ForumPosts" FromRole="UsersNotifications" ToRole="ForumPosts" />
+          <NavigationProperty Name="Movies" Relationship="MoviesModel.FK_UsersNotifications_Movies" FromRole="UsersNotifications" ToRole="Movies" />
+          <NavigationProperty Name="NotificationTypes" Relationship="MoviesModel.FK_UsersNotifications_NotificationTypes" FromRole="UsersNotifications" ToRole="NotificationTypes" />
+        </EntityType>
+        <Association Name="FK_UsersNotifications_AspNetUsers">
+          <End Type="MoviesModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="MoviesModel.UsersNotifications" Role="UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_Badges">
+          <End Type="MoviesModel.Badges" Role="Badges" Multiplicity="0..1" />
+          <End Type="MoviesModel.UsersNotifications" Role="UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Badges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="BadgeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_ForumPosts">
+          <End Type="MoviesModel.ForumPosts" Role="ForumPosts" Multiplicity="0..1" />
+          <End Type="MoviesModel.UsersNotifications" Role="UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ForumPosts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_Movies">
+          <End Type="MoviesModel.Movies" Role="Movies" Multiplicity="0..1" />
+          <End Type="MoviesModel.UsersNotifications" Role="UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersNotifications_NotificationTypes">
+          <End Type="MoviesModel.NotificationTypes" Role="NotificationTypes" Multiplicity="1" />
+          <End Type="MoviesModel.UsersNotifications" Role="UsersNotifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersNotifications">
+              <PropertyRef Name="NotificationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MoviesModelStoreContainer" CdmEntityContainer="MoviesEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="MoviesModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Reputation" ColumnName="Reputation" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Badges">
+            <EntityTypeMapping TypeName="MoviesModel.Badges">
+              <MappingFragment StoreEntitySet="Badges">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForumPosts">
+            <EntityTypeMapping TypeName="MoviesModel.ForumPosts">
+              <MappingFragment StoreEntitySet="ForumPosts">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="IsQuestion" ColumnName="IsQuestion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="IsAnswer" ColumnName="IsAnswer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="MoviesModel.Reviews">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReviewsLikes">
+            <EntityTypeMapping TypeName="MoviesModel.ReviewsLikes">
+              <MappingFragment StoreEntitySet="ReviewsLikes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Liked" ColumnName="Liked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersBadges">
+            <EntityTypeMapping TypeName="MoviesModel.UsersBadges">
+              <MappingFragment StoreEntitySet="UsersBadges">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BadgeId" ColumnName="BadgeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersFriendships">
+            <EntityTypeMapping TypeName="MoviesModel.UsersFriendships">
+              <MappingFragment StoreEntitySet="UsersFriendships">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstUser" ColumnName="FirstUser" />
+                <ScalarProperty Name="SecondUser" ColumnName="SecondUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRecommendations">
+            <EntityTypeMapping TypeName="MoviesModel.UsersRecommendations">
+              <MappingFragment StoreEntitySet="UsersRecommendations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="ReceiverId" ColumnName="ReceiverId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Liked" ColumnName="Liked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersWatchlists">
+            <EntityTypeMapping TypeName="MoviesModel.UsersWatchlists">
+              <MappingFragment StoreEntitySet="UsersWatchlists">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersRatings">
+            <EntityTypeMapping TypeName="MoviesModel.UsersRatings">
+              <MappingFragment StoreEntitySet="UsersRatings">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="MoviesModel.Genres">
+              <MappingFragment StoreEntitySet="Genres">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="MoviesModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="MoviesModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PostsLikes">
+            <EntityTypeMapping TypeName="MoviesModel.PostsLikes">
+              <MappingFragment StoreEntitySet="PostsLikes">
+                <ScalarProperty Name="Liked" ColumnName="Liked" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LatestMovies">
+            <EntityTypeMapping TypeName="MoviesModel.LatestMovies">
+              <MappingFragment StoreEntitySet="LatestMovies">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationConfigurations">
+            <EntityTypeMapping TypeName="MoviesModel.ApplicationConfigurations">
+              <MappingFragment StoreEntitySet="ApplicationConfigurations">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="MoviesModel.Movies">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+                <ScalarProperty Name="Awards" ColumnName="Awards" />
+                <ScalarProperty Name="Actors" ColumnName="Actors" />
+                <ScalarProperty Name="Writer" ColumnName="Writer" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Plot" ColumnName="Plot" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Released" ColumnName="Released" />
+                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationTypes">
+            <EntityTypeMapping TypeName="MoviesModel.NotificationTypes">
+              <MappingFragment StoreEntitySet="NotificationTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersNotifications">
+            <EntityTypeMapping TypeName="MoviesModel.UsersNotifications">
+              <MappingFragment StoreEntitySet="UsersNotifications">
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="BadgeId" ColumnName="BadgeId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="NotificationTypeId" ColumnName="NotificationTypeId" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

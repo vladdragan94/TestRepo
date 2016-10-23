@@ -1,0 +1,137 @@
+﻿@using Microsoft.AspNet.Identity
+@model MovieDictionary.Entities.Post
+
+@{
+    ViewBag.Title = "Post details";
+}
+
+@Styles.Render("~/Content/Forum")
+
+@if (Model != null)
+{
+    var currentUserId = User.Identity.GetUserId();
+
+    <div id="post-@Model.Id" class="forum-post-item">
+        <div class="post-content-section">
+            <h3 class="post-title">@Model.Title</h3>
+            <p class="post-content">@Model.Content</p>
+        </div>
+        <div class="post-votes">
+            @if (Model.LikedByCurrentUser.HasValue)
+            {
+                if (Model.LikedByCurrentUser.Value)
+                {
+                    <div id="vote-up-post-@Model.Id" title="Vote up" class="fa fa-plus post-vote-up post-vote-up-active"></div>
+                    <div class="number-of-votes">@Model.Votes</div>
+                    <div id="vote-down-post-@Model.Id" title="Vote down" class="fa fa-minus post-vote-down"></div>
+                }
+                else
+                {
+                    <div id="vote-up-post-@Model.Id" title="Vote up" class="fa fa-plus post-vote-up"></div>
+                    <div class="number-of-votes">@Model.Votes</div>
+                    <div id="vote-down-post-@Model.Id" title="Vote down" class="fa fa-minus post-vote-down post-vote-down-active"></div>
+                }
+            }
+            else
+            {
+                <div id="vote-up-post-@Model.Id" title="Vote up" class="fa fa-plus post-vote-up"></div>
+                <div class="number-of-votes">@Model.Votes</div>
+                <div id="vote-down-post-@Model.Id" title="Vote down" class="fa fa-minus post-vote-down"></div>
+            }
+        </div>
+        <hr />
+        <span class="post-author"><em>Posted by <strong>@Html.ActionLink(Model.PosterName, "UserProfile", "Users", new { userId = Model.UserId }, null)</strong> on <strong class="post-date-added">@Model.DateAdded.ToString("MMM dd, yyyy")</strong></em></span>
+        <p class="answered-status">
+            @if (Model.IsQuestion)
+            {
+                if (Model.HasAnswer)
+                {
+                    <span class="fa fa-check answered-status-icon answered"></span>
+                    <span>Answered | @Model.NumberOfComments comments | </span>
+                }
+                else
+                {
+                    <span class="fa fa-question answered-status-icon"></span>
+                    <span>Not answered yet | @Model.NumberOfComments comments | </span>
+                }
+            }
+            <a class="reply-button">Reply</a>
+        </p>
+    </div>
+
+    <div id="add-reply-post-@Model.Id" style="display:none" class="add-post">
+        <div class="write-post-content">
+            <span title="Close" class="fa fa-close close-post"></span>
+            <div class="form-group">
+                <textarea class="form-control post-content" rows="5" placeholder="Reply..."></textarea>
+            </div>
+            <a id="create-reply-post-@Model.Id" class="btn create-post"><span>Reply</span></a>
+        </div>
+        <input id="reply-title" type="hidden" value="Reply - [@Model.Title]" />
+    </div>
+
+    <div class="replies-section">
+        @foreach (var reply in Model.Replies)
+        {
+            <div id="reply-@reply.Id-post-@Model.Id" class="forum-post-item forum-post-reply-item">
+                <div class="post-content-section">
+                    <h4 class="post-title">
+                        @if (Model.IsQuestion)
+                    {
+                        if (Model.UserId == currentUserId && reply.UserId != currentUserId && !reply.IsAnswer)
+                        {
+                                <span id="mark-reply-@reply.Id" style="display:none" title="Mark answer" class="answer mark-answer fa fa-check"></span><span style="display:none" class="accepted-answer-text">Accepted answer </span>
+                            }
+                            if (reply.IsAnswer)
+                            {
+                                if (Model.UserId == currentUserId)
+                                {
+                                    <span id="mark-reply-@reply.Id" title="Unmark answer" class="answer mark-answer accepted-answer fa fa-check "></span><span class="accepted-answer-text">Accepted answer </span>
+                                }
+                                else
+                                {
+                                    <span id="mark-reply-@reply.Id" class="answer accepted-answer fa fa-check "></span><span class="accepted-answer-text">Accepted answer </span>
+                                }
+                            }
+                        }
+                        @reply.Title
+                    </h4>
+                    <p class="post-content">@reply.Content</p>
+                </div>
+                <div class="post-votes">
+                    @if (reply.LikedByCurrentUser.HasValue)
+                    {
+                        if (reply.LikedByCurrentUser.Value)
+                        {
+                            <div id="vote-up-post-@reply.Id" title="Vote up" class="fa fa-plus post-vote-up post-vote-up-active"></div>
+                            <div class="number-of-votes">@reply.Votes</div>
+                            <div id="vote-down-post-@reply.Id" title="Vote down" class="fa fa-minus post-vote-down"></div>
+                        }
+                        else
+                        {
+                            <div id="vote-up-post-@reply.Id" title="Vote up" class="fa fa-plus post-vote-up"></div>
+                            <div class="number-of-votes">@reply.Votes</div>
+                            <div id="vote-down-post-@reply.Id" title="Vote down" class="fa fa-minus post-vote-down post-vote-down-active"></div>
+                        }
+                    }
+                    else
+                    {
+                        <div id="vote-up-post-@reply.Id" title="Vote up" class="fa fa-plus post-vote-up"></div>
+                        <div class="number-of-votes">@reply.Votes</div>
+                        <div id="vote-down-post-@reply.Id" title="Vote down" class="fa fa-minus post-vote-down"></div>
+                    }
+                </div>
+                <hr />
+                <span class="post-author"><em>Posted by <strong>@Html.ActionLink(reply.PosterName, "UserProfile", "Users", new { userId = reply.UserId }, null)</strong> on <strong class="post-date-added">@reply.DateAdded.ToString("MMM dd, yyyy")</strong></em></span>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>Post not found</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/PostDetails")
+}

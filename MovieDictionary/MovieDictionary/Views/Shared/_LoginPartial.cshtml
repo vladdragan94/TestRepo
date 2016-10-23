@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity;
+
+<ul class="nav navbar-nav navbar-right">
+    @if (Request.IsAuthenticated)
+    {
+        <li class="dropdown user-actions-dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="logged-user-name">@User.Identity.GetUserName()</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu user-actions">
+                <li onclick="location.href = $(this).find('a').attr('href');"><span class="fa fa-user user-actions-icon"></span>@Html.ActionLink("My profile", "UserProfile", "Users", new { userId = User.Identity.GetUserId() }, null)</li>
+                <li onclick="location.href = $(this).find('a').attr('href');"><span class="fa fa-sticky-note-o user-actions-icon"></span>@Html.ActionLink("My watchlist", "Watchlist", "Movies")</li>
+                <li onclick="location.href = $(this).find('a').attr('href');"><span class="fa fa-star user-actions-icon"></span>@Html.ActionLink("My ratings", "Ratings", "Users")</li>
+                <li class="divider"></li>
+                <li onclick="$('#logout-form').submit();">
+                    <span class="fa fa-power-off user-actions-icon"></span><a href="#"> Log Off </a>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a class="login-button" data-toggle="modal" data-target="#login-register-modal"> Log in  </a>
+        </li>
+    }
+</ul>

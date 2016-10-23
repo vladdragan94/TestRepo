@@ -1,0 +1,179 @@
+﻿@using Microsoft.AspNet.Identity
+@model MovieDictionary.Entities.Profile
+
+@{
+    ViewBag.Title = Model.UserName + "'s profile";
+}
+
+@Styles.Render("~/Content/Users")
+
+<h2>
+    @ViewBag.Title
+</h2>
+
+<div class="reputation">
+    <h3>
+        Reputation: @Model.Reputation
+    </h3>
+</div>
+
+<div class="badges">
+    <h3>
+        Badges
+    </h3>
+    <div>
+        @if (Model.Badges != null && Model.Badges.Count > 0)
+        {
+            foreach (var badge in Model.Badges)
+            {
+                <img class="badge-image" alt="@badge.Name" title="@(!string.IsNullOrWhiteSpace(badge.Description) ? badge.Description : badge.Name)" src="~/Content/Badges/@(badge.Name + ".png")" />
+            }
+        }
+        else
+        {
+            <p>No badges earned yet</p>
+        }
+    </div>
+</div>
+
+<div class="friend-status">
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (Model.UserId != User.Identity.GetUserId())
+        {
+            if (!Model.IsFriend)
+            {
+                <a id="friend_@Model.UserId" class="btn btn-default add-friend-button add-friend">
+                    <span style="display:none" class="fa fa-check friend-button-icon"></span>
+                    <span class="add-friend-button-text">Add friend</span>
+                </a>
+            }
+            else
+            {
+                <a id="friend_@Model.UserId" class="btn btn-default add-friend-button">
+                    <span class="fa fa-check friend-button-icon"></span>
+                    <span class="add-friend-button-text">Friends</span>
+                </a>
+            }
+        }
+        else
+        {
+            <div class="notifications">
+                <h3>Notifications (@Model.Notifications.Where(item => item.Seen == false).Count() new)<span class="fa fa-plus expand-content"></span> </h3>
+                <div style="display:none" class="item-content">
+                    @if (Model.Notifications.Count > 0)
+                    {
+                        foreach (var notification in Model.Notifications)
+                        {
+                            var type = notification.NotificationType;
+
+                            if (!notification.Seen)
+                            {
+                                <div id="notification-@notification.Id" class="alert alert-success">
+                                    @switch (notification.NotificationType)
+                                {
+                                    case MovieDictionary.Entities.Constants.NotificationTypes.BadgeAwarded:
+                                            <span class="notification-text">You received a new badge!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.MovieInCinema:
+                                            <span class="notification-text">@Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) will be soon in cinemas!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.NewRecommendation:
+                                            <span class="notification-text">You received a new movie recommendation (@Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null))!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.ReviewVoted:
+                                            <span class="notification-text">Your review for @Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) received votes!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.PostVoted:
+                                            <span class="notification-text">Your @Html.ActionLink("post", "Details", "Posts", new { postId = notification.PostId }, null) received votes!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.AnswerMarkedAsAccepted:
+                                            <span class="notification-text">Your answer at this @Html.ActionLink("post", "Details", "Posts", new { postId = notification.PostId }, null) was marked as the accepted answer!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.RecommendationLiked:
+                                            <span class="notification-text">Your recommendation for @Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) was liked</span>
+                                            break;
+                                    }
+                                    <span class="notification-status"><span title="Mark as seen" class="fa fa-check mark-as-seen-button"></span> New!</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="notification-@notification.Id" class="alert alert-success seen-notification">
+                                    @switch (notification.NotificationType)
+                                {
+                                    case MovieDictionary.Entities.Constants.NotificationTypes.BadgeAwarded:
+                                            <span class="notification-text">You received a new badge!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.MovieInCinema:
+                                            <span class="notification-text">@Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) will be soon in cinemas!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.NewRecommendation:
+                                            <span class="notification-text">You received a new movie recommendation (@Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null))!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.ReviewVoted:
+                                            <span class="notification-text">Your review for @Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) received votes!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.PostVoted:
+                                            <span class="notification-text">Your @Html.ActionLink("post", "Details", "Posts", new { postId = notification.PostId }, null) received votes!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.AnswerMarkedAsAccepted:
+                                            <span class="notification-text">Your answer at this @Html.ActionLink("post", "Details", "Posts", new { postId = notification.PostId }, null) was marked as the accepted answer!</span>
+                                            break;
+                                        case MovieDictionary.Entities.Constants.NotificationTypes.RecommendationLiked:
+                                            <span class="notification-text">Your recommendation for @Html.ActionLink(notification.MovieName, "Details", "Movies", new { movieId = notification.MovieId }, null) was liked</span>
+                                            break;
+                                    }
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <p>No notifications to show</p>
+                    }
+                </div>
+            </div>
+
+            <div class="friends">
+                <h3>Friends <span class="fa fa-plus expand-content"></span></h3>
+                <div style="display:none" class="item-content">
+                    @if (Model.Friends.Count > 0)
+                    {
+                        foreach (var friend in Model.Friends)
+                        {
+                            <div>@Html.ActionLink(friend.UserName, "UserProfile", "Users", new { userId = friend.UserId }, null)</div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No friends to show</p>
+                    }
+                </div>
+            </div>
+
+            <div class="movie-recommendations">
+                <h3>Movie recommendations <span class="fa fa-plus expand-content"></span></h3>
+                <div style="display:none" class="item-content">
+                    @if (Model.Recommendations.Count > 0)
+                    {
+                        foreach (var recommendation in Model.Recommendations)
+                        {
+                            <div class="alert alert-success">
+                                @Html.ActionLink(recommendation.MovieName, "Details", "Movies", new { movieId = recommendation.MovieId }, null) was recommended to you by <a id="recommendation-@recommendation.MovieId" title="See users who recommended this" class="recommendation-users" data-toggle="modal" data-target="#users-recommendation-modal">@recommendation.NumberOfUsers</a> user(s)
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>No recommendations to show</p>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/Users")
+}

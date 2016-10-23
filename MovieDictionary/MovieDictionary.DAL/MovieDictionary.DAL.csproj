@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF49B3F2-11CA-4FE2-BBF9-39F2BA829625}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MovieDictionary.DAL</RootNamespace>
+    <AssemblyName>MovieDictionary.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationConfigurations.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetRoles.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUsers.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Badges.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ForumPosts.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Genres.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LatestMovies.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Movies.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesRepository.cs" />
+    <Compile Include="NotificationsRepository.cs" />
+    <Compile Include="NotificationTypes.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostsLikes.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostsRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reviews.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewsLikes.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewsRepository.cs" />
+    <Compile Include="UsersBadges.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersFriendships.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersNotifications.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersRatings.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersRecommendations.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersRepository.cs" />
+    <Compile Include="UsersWatchlists.cs">
+      <DependentUpon>MoviesModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MovieDictionary.Entities\MovieDictionary.Entities.csproj">
+      <Project>{255b79cb-531c-42e0-8d44-a1d387ff893c}</Project>
+      <Name>MovieDictionary.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MovieDictionary.IRepositories\MovieDictionary.IRepositories.csproj">
+      <Project>{cbb7c11c-5b0e-4a05-8dca-20d00d8e2ca5}</Project>
+      <Name>MovieDictionary.IRepositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="MoviesModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MoviesModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MoviesModel.edmx.diagram">
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MoviesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+      <LastGenOutput>MoviesModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MoviesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MoviesModel.edmx</DependentUpon>
+      <LastGenOutput>MoviesModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

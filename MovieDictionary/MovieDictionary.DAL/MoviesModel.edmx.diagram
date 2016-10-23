@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9a2fd39ddae74fbd8ffc5a5314e92199" Name="Diagram1">
+        <EntityTypeShape EntityType="MoviesModel.AspNetUsers" Width="2" PointX="0.625" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.Badges" Width="1.5" PointX="4.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.ForumPosts" Width="1.5" PointX="3.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.Reviews" Width="1.5" PointX="0.875" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.ReviewsLikes" Width="1.5" PointX="3.125" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.UsersBadges" Width="1.5" PointX="6.125" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.UsersFriendships" Width="1.5" PointX="3.125" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.UsersRecommendations" Width="1.5" PointX="6.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoviesModel.UsersWatchlists" Width="1.5" PointX="6.125" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="MoviesModel.FK_ForumPosts_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_ReviewsLikes_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersBadges_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersFriendships_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersFriendships_AspNetUsers1" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersRecommendations_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersRecommendations_AspNetUsers1" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersWatchlists_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_UsersBadges_Badges" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_ForumPosts_ForumPosts" ManuallyRouted="false" />
+        <AssociationConnector Association="MoviesModel.FK_ReviewsLikes_Reviews" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MoviesModel.UsersRatings" Width="1.5" PointX="10.625" PointY="6.375" />
+        <AssociationConnector Association="MoviesModel.FK_UsersRatings_AspNetUsers" />
+        <AssociationConnector Association="MoviesModel.FK_Reviews_AspNetUsers" />
+        <EntityTypeShape EntityType="MoviesModel.Genres" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MoviesModel.AspNetRoles" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="MoviesModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="MoviesModel.PostsLikes" Width="1.5" PointX="10.375" PointY="3.75" />
+        <AssociationConnector Association="MoviesModel.FK_PostsLikes_AspNetUsers" />
+        <AssociationConnector Association="MoviesModel.FK_PostsLikes_ForumPosts" />
+        <EntityTypeShape EntityType="MoviesModel.LatestMovies" Width="1.5" PointX="10.625" PointY="10.25" />
+        <EntityTypeShape EntityType="MoviesModel.ApplicationConfigurations" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="MoviesModel.Movies" Width="1.5" PointX="8.25" PointY="2.875" />
+        <AssociationConnector Association="MoviesModel.FK_LatestMovies_Movies" />
+        <AssociationConnector Association="MoviesModel.FK_Reviews_Movies" />
+        <AssociationConnector Association="MoviesModel.FK_UsersRatings_Movies" />
+        <AssociationConnector Association="MoviesModel.FK_UsersRecommendations_Movies" />
+        <AssociationConnector Association="MoviesModel.FK_UsersWatchlists_Movies" />
+        <EntityTypeShape EntityType="MoviesModel.NotificationTypes" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="MoviesModel.UsersNotifications" Width="1.5" PointX="13.5" PointY="5.125" />
+        <AssociationConnector Association="MoviesModel.FK_UsersNotifications_AspNetUsers" />
+        <AssociationConnector Association="MoviesModel.FK_UsersNotifications_Badges" />
+        <AssociationConnector Association="MoviesModel.FK_UsersNotifications_ForumPosts" />
+        <AssociationConnector Association="MoviesModel.FK_UsersNotifications_Movies" />
+        <AssociationConnector Association="MoviesModel.FK_UsersNotifications_NotificationTypes" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿.movies-pagination {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.page-number-button {
+    margin-right: 20px;
+}
+
+.filter-section-button {
+    margin-top: 20px;
+}
+
+.filter-section {
+    max-width: 400px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: #428bca;
+}
+
+    .filter-section .form-control {
+        margin-bottom: 10px;
+    }
+
+.close-filter {
+    cursor: pointer;
+    color: red;
+    float: right;
+    margin-top: -15px;
+    font-size: 16px;
+}
+
+.filter-button {
+    margin-top: 20px;
+}
+
+#slider {
+    margin-top: 22px;
+    margin-bottom: 35px;
+    height: 15px;
+    width: 95%;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.date {
+    display: none;
+}
+
+#slider .ui-slider-handle:last-child:after {
+    top: -25px;
+}
+
+.ui-slider-handle:after {
+    font-size: 16px;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: -15px;
+    margin-bottom: 5px;
+    content: attr(data-content);
+}

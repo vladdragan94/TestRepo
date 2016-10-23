@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MovieDictionary</title>
+    @Styles.Render("~/Content/css")
+    <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-dropdown">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-dropdown">
+            <ul class="nav navbar-nav">
+                <li>
+                    @Html.ActionLink("Movies", "Search", "Movies", new { area = "", showMore = false }, new { @class = "navbar-brand" })
+                </li>
+                <li>
+                    @Html.ActionLink("Forum", "Index", "Posts", new { area = "" }, new { @class = "navbar-brand" })
+                </li>
+                <li>
+                    @Html.ActionLink("Users", "Index", "Users", new { area = "" }, new { @class = "navbar-brand" })
+                </li>
+            </ul>
+            @using (Html.BeginForm("Search", "Movies", FormMethod.Get, new { @class = "navbar-form navbar-left", @id = "search-movies-form" }))
+            {
+                <div class="form-group">
+                    <input id="search-for-movies" name="title" type="text" class="form-control" placeholder="Search for movies...">
+                    <div style="display:none" class="loading-circle loading-movies"></div>
+                </div>
+                <div id="movies-search-results">
+                </div>
+                <input type="hidden" name="showMore" value="true" />
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <span class="back-to-top fa fa-chevron-up"></span>
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MovieDictionary</p>
+        </footer>
+    </div>
+
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logout-form", @style = "display: none" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <input id="application-base-url" type="hidden" value="@System.Configuration.ConfigurationManager.AppSettings["ApplicationBaseUrl"]" />
+    <input id="user-id" type="hidden" value="@User.Identity.GetUserId()" />
+    <input id="username" type="hidden" value="@User.Identity.Name" />
+
+    @Html.Partial("_Modals")
+    @Html.Partial("_HandlebarsTemplates")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    @Scripts.Render("~/bundles/Main")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
